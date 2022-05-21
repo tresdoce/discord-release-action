@@ -1,8 +1,9 @@
 import * as core from '@actions/core';
 import * as github from '@actions/github';
-import httpClient from './http-client';
 
-const webhook = 'https://discord.com/api/webhooks/976295901737914378/3MDpf4sHU1cVZ5dal7qwnnqQeCIukj_RBXMvlC3EcZ3CO4iYz68-EsVDG4bkmpqXWGUP';
+import axios from 'axios';
+const webhook =
+  'https://discord.com/api/webhooks/976295901737914378/3MDpf4sHU1cVZ5dal7qwnnqQeCIukj_RBXMvlC3EcZ3CO4iYz68-EsVDG4bkmpqXWGUP';
 export const run = async (): Promise<void> => {
   try {
     const gh_token = core.getInput('GITHUB_TOKEN');
@@ -65,13 +66,21 @@ export const run = async (): Promise<void> => {
       ],
     };
 
-    const response = httpClient.post(
-      webhook,
-      {
-        data: payload,
-      },
-    );
-    console.log(response);
+    axios({
+      method: 'POST',
+      url: webhook,
+      data: payload,
+    })
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    /*const response = httpClient.post(webhook, {
+      data: payload,
+    });
+    console.log(response);*/
     //const time = new Date().toTimeString();
     //core.setOutput('Time', time);
     //const payload = JSON.stringify(github.context.payload, undefined, 0);
