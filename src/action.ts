@@ -1,5 +1,6 @@
 import * as core from '@actions/core';
 import * as github from '@actions/github';
+import { request } from '@octokit/request';
 
 export const run = async (): Promise<void> => {
   try {
@@ -13,20 +14,19 @@ export const run = async (): Promise<void> => {
     console.log(`TAG: ${tag}!`);
 
     // Get authenticated GitHub client (Ocktokit): https://github.com/actions/toolkit/tree/master/packages/github#usage
-    const octokit = github.getOctokit(gh_token);
+    //const octokit = github.getOctokit(gh_token);
     // https://api.github.com/repos/tresdoce/tresdoce-nestjs-toolkit/releases/tags/@tresdoce-nestjs-toolkit/typeorm@0.1.0-beta.0
-    const data = octokit.request.endpoint('GET /repos/{owner}/{repo}/releases/tags/{tag}', {
+    const requestWithAuth = request.defaults({
+      headers: {
+        authorization:`token ${gh_token}`,
+      },
+    });
+    const data = requestWithAuth('GET /repos/{owner}/{repo}/releases/tags/{tag}', {
       baseUrl: 'https://api.github.com',
       owner,
       repo,
       tag,
     });
-    /*const data = octokit.request('GET /repos/{owner}/{repo}/releases/tags/{tag}', {
-      baseUrl: 'https://api.github.com',
-      owner,
-      repo,
-      tag,
-    });*/
 
     console.log(data);
 
