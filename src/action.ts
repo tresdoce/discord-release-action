@@ -14,14 +14,10 @@ export const run = async (): Promise<void> => {
     console.log(`TAG: ${tag}!`);
 
     // Get authenticated GitHub client (Ocktokit): https://github.com/actions/toolkit/tree/master/packages/github#usage
-    //const octokit = github.getOctokit(gh_token);
+    const octokit = github.getOctokit(gh_token);
     // https://api.github.com/repos/tresdoce/tresdoce-nestjs-toolkit/releases/tags/@tresdoce-nestjs-toolkit/typeorm@0.1.0-beta.0
-    const requestWithAuth = request.defaults({
-      headers: {
-        authorization: `token ${gh_token}`,
-      },
-    });
-    const data = await requestWithAuth('GET /repos/{owner}/{repo}/releases/tags/{tag}', {
+
+    const data = await octokit.request('GET /repos/{owner}/{repo}/releases/tags/{tag}', {
       baseUrl: 'https://api.github.com',
       owner,
       repo,

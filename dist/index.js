@@ -48,7 +48,7 @@ const run = async () => {
                 authorization: `token ${gh_token}`,
             },
         });
-        const data = requestWithAuth('GET /repos/{owner}/{repo}/releases/tags/{tag}', {
+        const data = await requestWithAuth('GET /repos/{owner}/{repo}/releases/tags/{tag}', {
             baseUrl: 'https://api.github.com',
             owner,
             repo,
