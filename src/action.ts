@@ -1,6 +1,6 @@
 import * as core from '@actions/core';
 import * as github from '@actions/github';
-import httpClient from "./http-client";
+import httpClient from './http-client';
 
 const webhook =
   'https://discord.com/api/webhooks/976295901737914378/3MDpf4sHU1cVZ5dal7qwnnqQeCIukj_RBXMvlC3EcZ3CO4iYz68-EsVDG4bkmpqXWGUP';
@@ -66,7 +66,7 @@ export const run = async (): Promise<void> => {
       ],
     };
 
-    const response = httpClient.post(webhook, {
+    const response = await httpClient.post(webhook, {
       data: payload,
     });
     console.log(response);
