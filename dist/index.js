@@ -36,9 +36,20 @@ const github = __importStar(__nccwpck_require__(5438));
 const run = async () => {
     try {
         const gh_token = core.getInput('GITHUB_TOKEN');
-        console.log(`GITHUB_TOKEN: ${gh_token}!`);
-        const payload = JSON.stringify(github.context.payload, undefined, 0);
-        console.log(`The Event Payload: ${payload}`);
+        console.log(`GITHUB_TOKEN: ${gh_token}`);
+        const owner = core.getInput('owner');
+        console.log(`OWNER: ${owner}!`);
+        const repo = core.getInput('repo');
+        console.log(`REPO: ${repo}!`);
+        const tag = core.getInput('tag');
+        console.log(`TAG: ${tag}!`);
+        const octokit = github.getOctokit(gh_token);
+        const data = octokit.request('GET /repos/{owner}/{repo}/releases/tags/{tag}', {
+            owner,
+            repo,
+            tag,
+        });
+        console.log(data);
     }
     catch (error) {
         if (error instanceof Error)
