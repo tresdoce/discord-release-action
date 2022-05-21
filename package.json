@@ -1,0 +1,25 @@
+{
+  "name": "discord-release-action",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "ncc build ./src/action.js -o ./dist --license license.txt",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tresdoce/discord-release-action.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tresdoce/discord-release-action/issues"
+  },
+  "homepage": "https://github.com/tresdoce/discord-release-action#readme",
+  "dependencies": {
+    "@actions/core": "^1.8.2",
+    "@actions/github": "^5.0.3",
+    "@vercel/ncc": "^0.33.4"
+  }
+}

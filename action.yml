@@ -1,0 +1,17 @@
+name : 'TimeZone'  # The Name of the Custom GitHub Action
+description: ' A Custom GitHub Action for the Universal TimeZone with User Name' # Description of the TimeZone GitHub Action
+author: 'Mex Delgado'
+
+inputs: # user can input the name inside the name of user variable , descriptions etc
+  name-of-user:
+    description: 'Your Name'
+    required: true
+    default: 'TimeZone'
+
+outputs: # Where the outputs of the Program
+  time:
+    description : 'The time of the message'
+
+runs:  # This GitHub Action will be Run on the Node12 Version and through JavaScript file which is inside the dist/index.js
+  using: 'node12'
+  main: 'dist/index.js'

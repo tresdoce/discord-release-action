@@ -1,5 +1,4 @@
 # compiled output
-/dist
 /node_modules
 package-lock.json
 yarn.lock
@@ -40,14 +39,6 @@ test-report.xml
 *.tgz
 *.zip
 *.rar
-
-# DATA
-mongo_data
-./mongo_data
-./postgres_data
-postgres_data
-./.mysql-data
-.mysql-data
 
 # ENVIROMENTS
 ./*.env
