@@ -73,7 +73,7 @@ const run = async () => {
                 },
             ],
         };
-        const response = await http_client_1.default.post('https://discord.com/api/webhooks/976295901737914378/3MDpf4sHU1cVZ5dal7qwnnqQeCIukj_RBXMvlC3EcZ3CO4iYz68-EsVDG4bkmpqXWGUP', {
+        const response = http_client_1.default.post('https://discord.com/api/webhooks/976295901737914378/3MDpf4sHU1cVZ5dal7qwnnqQeCIukj_RBXMvlC3EcZ3CO4iYz68-EsVDG4bkmpqXWGUP', {
             data: bodyDiscord,
         });
         console.log(response);
