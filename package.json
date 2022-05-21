@@ -16,15 +16,16 @@
   },
   "homepage": "https://github.com/tresdoce/discord-release-action#readme",
   "license": "MIT",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "ncc build src/action.ts -o ./dist --license license.txt",
+    "build": "tsc && ncc build --source-map --license license.txt",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "eslint \"src/**/*.ts\" --fix",
     "pre-commit": "lint-staged",
     "test": "node -v",
     "test:unit": "jest --runInBand --detectOpenHandles --forceExit --coverage",
+    "test:commit": "jest --detectOpenHandles --forceExit",
     "postinstall": "husky install"
   },
   "prettier": {

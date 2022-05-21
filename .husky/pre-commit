@@ -4,4 +4,4 @@
 yarn lint
 yarn format
 yarn build
-#jest --detectOpenHandles --forceExit
+#yarn test:commit

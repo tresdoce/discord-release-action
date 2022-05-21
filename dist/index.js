@@ -1,5 +1,31 @@
-/******/ (() => { // webpackBootstrap
+require('./sourcemap-register.js');/******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
+
+/***/ 9283:
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const core_1 = __importDefault(__nccwpck_require__(2186));
+const github_1 = __importDefault(__nccwpck_require__(5438));
+try {
+    const yourName = core_1.default.getInput('name-of-user');
+    console.log(`Hello ${yourName}!`);
+    const time = new Date().toTimeString();
+    core_1.default.setOutput('Time', time);
+    const payload = JSON.stringify(github_1.default.context.payload, undefined, 0);
+    console.log(`The Event Payload: ${payload}`);
+}
+catch (error) {
+    core_1.default.setFailed(error.message);
+}
+//# sourceMappingURL=index.js.map
+
+/***/ }),
 
 /***/ 7351:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
@@ -8691,32 +8717,6 @@ function wrappy (fn, cb) {
 
 /***/ }),
 
-/***/ 7672:
-/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
-
-"use strict";
-
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-const core_1 = __importDefault(__nccwpck_require__(2186));
-const github_1 = __importDefault(__nccwpck_require__(5438));
-try {
-    const yourName = core_1.default.getInput('name-of-user');
-    console.log(`Hello ${yourName}!`);
-    const time = new Date().toTimeString();
-    core_1.default.setOutput('Time', time);
-    const payload = JSON.stringify(github_1.default.context.payload, undefined, 0);
-    console.log(`The Event Payload: ${payload}`);
-}
-catch (error) {
-    core_1.default.setFailed(error.message);
-}
-
-
-/***/ }),
-
 /***/ 2877:
 /***/ ((module) => {
 
@@ -8887,8 +8887,9 @@ module.exports = JSON.parse('[[[0,44],"disallowed_STD3_valid"],[[45,46],"valid"]
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __nccwpck_require__(7672);
+/******/ 	var __webpack_exports__ = __nccwpck_require__(9283);
 /******/ 	module.exports = __webpack_exports__;
 /******/ 	
 /******/ })()
 ;
+//# sourceMappingURL=index.js.map
