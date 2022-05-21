@@ -75,7 +75,7 @@ const run = async () => {
             ],
         };
         axios_1.default
-            .post(webhook, payload)
+            .post(webhook, { data: payload })
             .then((res) => {
             core.setOutput('result', 'Webhook sent');
         })

@@ -1,9 +1,6 @@
 import * as core from '@actions/core';
 import * as github from '@actions/github';
-import axios from 'axios';
-
-const webhook =
-  'https://discord.com/api/webhooks/976295901737914378/3MDpf4sHU1cVZ5dal7qwnnqQeCIukj_RBXMvlC3EcZ3CO4iYz68-EsVDG4bkmpqXWGUP';
+import httpClient from './http-client';
 
 export const run = async (): Promise<void> => {
   try {
@@ -44,7 +41,7 @@ export const run = async (): Promise<void> => {
       },
     } = getReleaseResponse;
 
-    console.log(getReleaseResponse);
+    //console.log(getReleaseResponse);
 
     console.log(
       `Got release info: '${releaseId}', '${htmlUrl}', '${uploadUrl}', '${name}', '${draft}', '${prerelease}', '${body}', '${author}'`,
@@ -67,14 +64,13 @@ export const run = async (): Promise<void> => {
       ],
     };
 
-    axios
-      .post(webhook, { data: payload})
-      .then((res) => {
-        core.setOutput('result', 'Webhook sent');
-      })
-      .catch((error) => {
-        if (error instanceof Error) core.setFailed(`Post to webhook failed, ${error}`);
-      });
+    const response = httpClient.post(
+      'https://discord.com/api/webhooks/976295901737914378/3MDpf4sHU1cVZ5dal7qwnnqQeCIukj_RBXMvlC3EcZ3CO4iYz68-EsVDG4bkmpqXWGUP',
+      {
+        data: payload,
+      },
+    );
+    console.log(response);
     //const time = new Date().toTimeString();
     //core.setOutput('Time', time);
     //const payload = JSON.stringify(github.context.payload, undefined, 0);
