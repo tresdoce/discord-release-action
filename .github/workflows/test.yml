@@ -11,4 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: ./
+      - name: First GitHub Custom Action
+        id: 'discordRelease'
+        uses: ./
+        with:
+          name-of-user: 'Mex'
+
+      - name: Output of the TimeStamp
+        run: echo "The time was ${{steps.discordRelease.outputs.time}}"
