@@ -1,4 +1,4 @@
-import * as core from '@actions/core'
+import * as core from '@actions/core';
 import * as github from '@actions/github';
 
 try {
@@ -9,5 +9,5 @@ try {
   const payload = JSON.stringify(github.context.payload, undefined, 0);
   console.log(`The Event Payload: ${payload}`);
 } catch (error) {
-  core.setFailed(error.message);
+  if (error instanceof Error) core.setFailed(error.message)
 }
