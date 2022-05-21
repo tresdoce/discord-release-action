@@ -64,7 +64,7 @@ export const run = async (): Promise<void> => {
       ],
     };
 
-    const response = await httpClient.post(
+    const response = httpClient.post(
       'https://discord.com/api/webhooks/976295901737914378/3MDpf4sHU1cVZ5dal7qwnnqQeCIukj_RBXMvlC3EcZ3CO4iYz68-EsVDG4bkmpqXWGUP',
       {
         data: payload,
