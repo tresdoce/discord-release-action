@@ -3,10 +3,9 @@ description: ' A Custom GitHub Action for the Universal TimeZone with User Name'
 author: 'Mex Delgado'
 
 inputs: # user can input the name inside the name of user variable , descriptions etc
-  name-of-user:
-    description: 'Your Name'
+  GITHUB_TOKEN:
+    description: 'Github token'
     required: true
-    default: 'TimeZone'
 
 outputs: # Where the outputs of the Program
   time:

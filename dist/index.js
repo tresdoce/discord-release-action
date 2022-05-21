@@ -1,7 +1,7 @@
 require('./sourcemap-register.js');/******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 9283:
+/***/ 3109:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 "use strict";
@@ -32,18 +32,20 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__nccwpck_require__(2186));
 const github = __importStar(__nccwpck_require__(5438));
-try {
-    const yourName = core.getInput('name-of-user');
-    console.log(`Hello ${yourName}!`);
-    const time = new Date().toTimeString();
-    core.setOutput('Time', time);
-    const payload = JSON.stringify(github.context.payload, undefined, 0);
-    console.log(`The Event Payload: ${payload}`);
+async function run() {
+    try {
+        const gh_token = core.getInput('GITHUB_TOKEN');
+        console.log(`GITHUB_TOKEN: ${gh_token}!`);
+        const payload = JSON.stringify(github.context.payload, undefined, 0);
+        console.log(`The Event Payload: ${payload}`);
+    }
+    catch (error) {
+        if (error instanceof Error)
+            core.setFailed(error.message);
+    }
 }
-catch (error) {
-    core.setFailed(error.message);
-}
-//# sourceMappingURL=index.js.map
+run();
+//# sourceMappingURL=main.js.map
 
 /***/ }),
 
@@ -8907,7 +8909,7 @@ module.exports = JSON.parse('[[[0,44],"disallowed_STD3_valid"],[[45,46],"valid"]
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __nccwpck_require__(9283);
+/******/ 	var __webpack_exports__ = __nccwpck_require__(3109);
 /******/ 	module.exports = __webpack_exports__;
 /******/ 	
 /******/ })()

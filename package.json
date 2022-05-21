@@ -18,9 +18,9 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "prebuild": "rimraf dist",
+    "prebuild": "rimraf lib dist",
     "build": "tsc",
-    "postbuild": "ncc build ./dist/index.js --source-map --license license.txt",
+    "postbuild": "ncc build ./lib/main.js --source-map --license license.txt",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "eslint \"src/**/*.ts\" --fix",
     "pre-commit": "lint-staged",
