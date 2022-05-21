@@ -68,7 +68,7 @@ export const run = async (): Promise<void> => {
     };
 
     axios
-      .post(webhook, payload)
+      .post(webhook, { data: payload})
       .then((res) => {
         core.setOutput('result', 'Webhook sent');
       })
