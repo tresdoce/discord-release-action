@@ -8870,7 +8870,7 @@ try{
     core.setOutput("Time",time);
     const payload= JSON.stringify(github.context.payload,undefined,0);
     console.log(`The Event Payload: ${payload}`);
-    console.log("Owner and repo: ", payload.repository.html_url.replace('https://github.com/',''))
+    console.log("Owner and repo: ", payload.repository.url.replace('https://github.com/',''))
 
 } catch(error)
 {
