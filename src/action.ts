@@ -2,8 +2,7 @@ import * as core from '@actions/core';
 import * as github from '@actions/github';
 import httpClient from './http-client';
 
-const webhook =
-  'https://discord.com/api/webhooks/976295901737914378/3MDpf4sHU1cVZ5dal7qwnnqQeCIukj_RBXMvlC3EcZ3CO4iYz68-EsVDG4bkmpqXWGUP';
+
 export const run = async (): Promise<void> => {
   try {
     const gh_token = core.getInput('GITHUB_TOKEN');
@@ -14,6 +13,7 @@ export const run = async (): Promise<void> => {
     console.log(`REPO: ${repo}!`);
     const tag = core.getInput('tag');
     console.log(`TAG: ${tag}!`);
+    const webhook = core.getInput('webhook');
 
     // Get authenticated GitHub client (Ocktokit): https://github.com/actions/toolkit/tree/master/packages/github#usage
     const octokit = github.getOctokit(gh_token);

@@ -19,6 +19,7 @@ jobs:
           owner: 'tresdoce'
           repo: 'tresdoce-nestjs-toolkit'
           tag: '@tresdoce-nestjs-toolkit/typeorm@0.1.0-beta.0'
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
 
       - name: Output of the TimeStamp
         run: echo "The time was ${{steps.discordRelease.outputs.time}}"

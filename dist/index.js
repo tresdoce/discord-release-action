@@ -73,7 +73,7 @@ const run = async () => {
                 },
             ],
         };
-        const response = http_client_1.default.post(webhook, {
+        const response = await http_client_1.default.post(webhook, {
             data: payload,
         });
         console.log(response);
