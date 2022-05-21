@@ -18,10 +18,10 @@ export const run = async (): Promise<void> => {
     // https://api.github.com/repos/tresdoce/tresdoce-nestjs-toolkit/releases/tags/@tresdoce-nestjs-toolkit/typeorm@0.1.0-beta.0
     const requestWithAuth = request.defaults({
       headers: {
-        authorization:`token ${gh_token}`,
+        authorization: `token ${gh_token}`,
       },
     });
-    const data = requestWithAuth('GET /repos/{owner}/{repo}/releases/tags/{tag}', {
+    const data = await requestWithAuth('GET /repos/{owner}/{repo}/releases/tags/{tag}', {
       baseUrl: 'https://api.github.com',
       owner,
       repo,
