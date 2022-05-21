@@ -41,6 +41,8 @@ export const run = async (): Promise<void> => {
       },
     } = getReleaseResponse;
 
+    console.log(getReleaseResponse);
+
     console.log(
       `Got release info: '${releaseId}', '${htmlUrl}', '${uploadUrl}', '${name}', '${draft}', '${prerelease}', '${body}', '${author}'`,
     );
@@ -63,13 +65,13 @@ export const run = async (): Promise<void> => {
       ],
     };
 
-    const res = httpClient.post(
+    const response = httpClient.post(
       'https://discord.com/api/webhooks/976295901737914378/3MDpf4sHU1cVZ5dal7qwnnqQeCIukj_RBXMvlC3EcZ3CO4iYz68-EsVDG4bkmpqXWGUP',
       {
         data: bodyDiscord,
       },
     );
-    console.log(res);
+    console.log(response);
     //const time = new Date().toTimeString();
     //core.setOutput('Time', time);
     //const payload = JSON.stringify(github.context.payload, undefined, 0);
