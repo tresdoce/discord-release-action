@@ -36,8 +36,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.run = void 0;
 const core = __importStar(__nccwpck_require__(2186));
 const github = __importStar(__nccwpck_require__(5438));
-const axios_1 = __importDefault(__nccwpck_require__(6545));
-const webhook = 'https://discord.com/api/webhooks/976295901737914378/3MDpf4sHU1cVZ5dal7qwnnqQeCIukj_RBXMvlC3EcZ3CO4iYz68-EsVDG4bkmpqXWGUP';
+const http_client_1 = __importDefault(__nccwpck_require__(7261));
 const run = async () => {
     try {
         const gh_token = core.getInput('GITHUB_TOKEN');
@@ -56,7 +55,6 @@ const run = async () => {
             tag,
         });
         const { data: { id: releaseId, html_url: htmlUrl, upload_url: uploadUrl, name: name, body: body, draft: draft, prerelease: prerelease, author: author, }, } = getReleaseResponse;
-        console.log(getReleaseResponse);
         console.log(`Got release info: '${releaseId}', '${htmlUrl}', '${uploadUrl}', '${name}', '${draft}', '${prerelease}', '${body}', '${author}'`);
         const payload = {
             username: 'GitHub',
@@ -74,15 +72,10 @@ const run = async () => {
                 },
             ],
         };
-        axios_1.default
-            .post(webhook, { data: payload })
-            .then((res) => {
-            core.setOutput('result', 'Webhook sent');
-        })
-            .catch((error) => {
-            if (error instanceof Error)
-                core.setFailed(`Post to webhook failed, ${error}`);
+        const response = http_client_1.default.post('https://discord.com/api/webhooks/976295901737914378/3MDpf4sHU1cVZ5dal7qwnnqQeCIukj_RBXMvlC3EcZ3CO4iYz68-EsVDG4bkmpqXWGUP', {
+            data: payload,
         });
+        console.log(response);
     }
     catch (error) {
         if (error instanceof Error)
@@ -91,6 +84,87 @@ const run = async () => {
 };
 exports.run = run;
 //# sourceMappingURL=action.js.map
+
+/***/ }),
+
+/***/ 7261:
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+
+"use strict";
+
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.HttpMethods = void 0;
+const axios_1 = __importDefault(__nccwpck_require__(6545));
+const https_1 = __importDefault(__nccwpck_require__(5687));
+var HttpMethods;
+(function (HttpMethods) {
+    HttpMethods["GET"] = "GET";
+    HttpMethods["PUT"] = "PUT";
+    HttpMethods["POST"] = "POST";
+    HttpMethods["DELETE"] = "DELETE";
+})(HttpMethods = exports.HttpMethods || (exports.HttpMethods = {}));
+const headers = {
+    'Content-Type': 'application/json',
+    Accept: `application/vnd.iman.v1+json, application/json, text/plain, */*`,
+    'Cache-Control': 'no-store, no-cache, must-revalidate',
+    Pragma: 'no-cache',
+};
+const filterOptions = (_a) => {
+    var rest = __rest(_a, []);
+    return rest;
+};
+const fetch = async (url, options = {}) => {
+    try {
+        const instance = axios_1.default.create(Object.assign({}, options));
+        return await instance.request({
+            url,
+            data: options['data'],
+            params: options['params'],
+            method: options['method'],
+            headers: options['headers'],
+            httpsAgent: new https_1.default.Agent({
+                rejectUnauthorized: false,
+                requestCert: false,
+            }),
+        });
+    }
+    catch (error) {
+        throw error;
+    }
+};
+const get = async (url, options = {}) => {
+    return fetch(url, Object.assign({ method: HttpMethods.GET, headers }, filterOptions(options)));
+};
+const post = async (url, options = {}) => {
+    return fetch(url, Object.assign({ method: HttpMethods.POST, headers }, filterOptions(options)));
+};
+const put = async (url, options = {}) => {
+    return fetch(url, Object.assign({ method: HttpMethods.PUT, headers }, filterOptions(options)));
+};
+const del = async (url, options = {}) => {
+    return fetch(url, Object.assign({ method: HttpMethods.DELETE, headers }, filterOptions(options)));
+};
+exports["default"] = {
+    get,
+    post,
+    put,
+    delete: del,
+};
+//# sourceMappingURL=http-client.js.map
 
 /***/ }),
 
