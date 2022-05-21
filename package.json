@@ -16,10 +16,11 @@
   },
   "homepage": "https://github.com/tresdoce/discord-release-action#readme",
   "license": "MIT",
-  "main": "dist/index.js",
+  "main": "index.js",
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "tsc && ncc build --source-map --license license.txt",
+    "build": "tsc",
+    "postbuild": "ncc build ./dist/index.js --source-map --license license.txt",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "eslint \"src/**/*.ts\" --fix",
     "pre-commit": "lint-staged",
