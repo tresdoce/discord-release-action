@@ -16,7 +16,7 @@
   },
   "homepage": "https://github.com/tresdoce/discord-release-action#readme",
   "license": "MIT",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "prebuild": "rimraf lib dist",
     "build": "tsc",

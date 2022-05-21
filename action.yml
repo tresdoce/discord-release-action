@@ -6,6 +6,15 @@ inputs: # user can input the name inside the name of user variable , description
   GITHUB_TOKEN:
     description: 'Github token'
     required: true
+  owner:
+    description: 'Repo owner'
+    required: true
+  repo:
+    description: 'Repo name'
+    required: true
+  tag:
+    description: 'tag to get'
+    required: true
 
 outputs: # Where the outputs of the Program
   time:

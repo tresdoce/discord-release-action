@@ -1,7 +1,7 @@
 require('./sourcemap-register.js');/******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 3109:
+/***/ 9139:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 "use strict";
@@ -30,9 +30,10 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.run = void 0;
 const core = __importStar(__nccwpck_require__(2186));
 const github = __importStar(__nccwpck_require__(5438));
-async function run() {
+const run = async () => {
     try {
         const gh_token = core.getInput('GITHUB_TOKEN');
         console.log(`GITHUB_TOKEN: ${gh_token}!`);
@@ -43,9 +44,9 @@ async function run() {
         if (error instanceof Error)
             core.setFailed(error.message);
     }
-}
-run();
-//# sourceMappingURL=main.js.map
+};
+exports.run = run;
+//# sourceMappingURL=action.js.map
 
 /***/ }),
 
@@ -8905,13 +8906,21 @@ module.exports = JSON.parse('[[[0,44],"disallowed_STD3_valid"],[[45,46],"valid"]
 /******/ 	if (typeof __nccwpck_require__ !== 'undefined') __nccwpck_require__.ab = __dirname + "/";
 /******/ 	
 /************************************************************************/
-/******/ 	
-/******/ 	// startup
-/******/ 	// Load entry module and return exports
-/******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __nccwpck_require__(3109);
-/******/ 	module.exports = __webpack_exports__;
-/******/ 	
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+(() => {
+"use strict";
+var exports = __webpack_exports__;
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const action_1 = __nccwpck_require__(9139);
+if (require.main === require.cache[eval('__filename')]) {
+    (0, action_1.run)();
+}
+//# sourceMappingURL=main.js.map
+})();
+
+module.exports = __webpack_exports__;
 /******/ })()
 ;
 //# sourceMappingURL=index.js.map
