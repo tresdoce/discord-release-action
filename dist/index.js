@@ -58,7 +58,7 @@ const run = async () => {
         const { data: { id: releaseId, html_url: htmlUrl, upload_url: uploadUrl, name: name, body: body, draft: draft, prerelease: prerelease, author: author, }, } = getReleaseResponse;
         console.log(`Got release info: '${releaseId}', '${htmlUrl}', '${uploadUrl}', '${name}', '${draft}', '${prerelease}', '${body}', '${author}'`);
         let content = `🎉  New release of [**${name}**](${htmlUrl}) is out!\n\n\n${body}`;
-        content = content.replace('#', '');
+        content.replace(/#/g, '');
         const payload = {
             username: 'GitHub',
             avatar_url: 'https://avatars.githubusercontent.com/u/9919?v=4',
