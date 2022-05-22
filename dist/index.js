@@ -57,7 +57,7 @@ const run = async () => {
         });
         const { data: { id: releaseId, html_url: htmlUrl, upload_url: uploadUrl, name: name, body: body, draft: draft, prerelease: prerelease, author: author, }, } = getReleaseResponse;
         console.log(`Got release info: '${releaseId}', '${htmlUrl}', '${uploadUrl}', '${name}', '${draft}', '${prerelease}', '${body}', '${author}'`);
-        let content = `🎉  New release of [**${name}**](${htmlUrl}) is out!\n\n\n${body}`;
+        const content = `🎉  New release of [**${name}**](${htmlUrl}) is out!\n\n\n${body}`;
         content.replace(/#/g, '');
         const payload = {
             username: 'GitHub',
@@ -75,7 +75,7 @@ const run = async () => {
                 },
             ],
         };
-        const response = await http_client_1.default.post(webhook, {
+        await http_client_1.default.post(webhook, {
             data: payload,
         });
     }
