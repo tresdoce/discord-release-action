@@ -61,17 +61,17 @@ export const run = async (): Promise<void> => {
       const content = `${changelog.join('\n\n\n')}`;
 
       const payload = {
-        username: 'GitHub',
-        avatar_url: 'https://avatars.githubusercontent.com/u/9919?v=4', //'https://avatars.githubusercontent.com/u/75711943?s=200&v=4',
-        content,
-        embeds: [
+        'username': 'GitHub',
+        'avatar_url': 'https://avatars.githubusercontent.com/u/9919?v=4', //'https://avatars.githubusercontent.com/u/75711943?s=200&v=4',
+        'content': content.toString(),
+        'embeds': [
           {
-            title: `${name}`,
-            url: `${htmlUrl}`,
-            description: '',
-            color: '3066993',
-            image: {
-              url: `https://opengraph.githubassets.com/4e71dd5db14974f45c97e2243f65f904e5ac12996c498f4655ef434c8d1575d3/${owner}/${repo}/releases/tag/${name}`,
+            'title': `${name}`,
+            'url': `${htmlUrl}`,
+            'description': '',
+            'color': '3066993',
+            'image': {
+              'url': `https://opengraph.githubassets.com/4e71dd5db14974f45c97e2243f65f904e5ac12996c498f4655ef434c8d1575d3/${owner}/${repo}/releases/tag/${name}`,
             },
           },
         ],
