@@ -20,8 +20,6 @@ export const run = async (): Promise<void> => {
       repo,
     });
 
-    console.log(getLatestTag);
-
     // Get release by tag
     /*
     const getReleaseResponse = await octokit.request(
@@ -54,17 +52,11 @@ export const run = async (): Promise<void> => {
     );*/
 
     const {
-      data: {
-        html_url: htmlUrl,
-        name: name,
-        body: body
-      },
+      data: { html_url: htmlUrl, name, body },
     } = getLatestTag;
 
-    console.log(body);
-
     if (body) {
-      const changelog = body?.replace(/#/g, '').split('\n\n\n');
+      const changelog = body?.replace(/#/g, "").replace(/\r/g, "").split("\n\n\n");
       changelog[0] = `🎉  New release of [**${name}**](${htmlUrl}) is out!`;
       const content = `${changelog.join('\n\n\n')}`;
 
