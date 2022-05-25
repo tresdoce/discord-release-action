@@ -71,9 +71,10 @@ const run = async () => {
                 ],
             };
             console.log(payload);
-            await http_client_1.default.post(webhook, {
+            const res = await http_client_1.default.post(webhook, {
                 data: payload,
             });
+            console.log(res);
         }
     }
     catch (error) {
