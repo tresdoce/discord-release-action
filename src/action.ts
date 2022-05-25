@@ -80,7 +80,7 @@ export const run = async (): Promise<void> => {
       const res = await httpClient.post(webhook, {
         data: payload,
       });
-      console.log(res)
+      console.log(res);
     }
   } catch (error) {
     if (error instanceof Error) core.setFailed(error.message);
