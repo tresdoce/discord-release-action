@@ -50,6 +50,7 @@ const run = async () => {
             repo,
         });
         const { data: { html_url: htmlUrl, name, body }, } = getLatestTag;
+        console.log(getLatestTag);
         if (body) {
             const changelog = body === null || body === void 0 ? void 0 : body.replace(/#/g, '').replace(/\r/g, '').split('\n\n\n');
             changelog[0] = `🎉  New release of [**${name}**](${htmlUrl}) is out!`;
