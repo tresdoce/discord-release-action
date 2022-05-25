@@ -14,13 +14,13 @@ export const run = async (): Promise<void> => {
     const octokit = github.getOctokit(gh_token);
     // https://api.github.com/repos/tresdoce/tresdoce-nestjs-toolkit/releases/tags/@tresdoce-nestjs-toolkit/typeorm@0.1.0-beta.0
 
-    const latestTag = await octokit.request('GET /repos/{owner}/{repo}/releases/latest',{
+    const getLatestTag = await octokit.request('GET /repos/{owner}/{repo}/releases/latest', {
       owner,
       repo,
     });
-    console.log(latestTag)
+
     // Get release by tag
-    const getReleaseResponse = await octokit.request(
+    /*const getReleaseResponse = await octokit.request(
       'GET /repos/{owner}/{repo}/releases/tags/{tag}',
       {
         baseUrl: 'https://api.github.com',
@@ -30,13 +30,28 @@ export const run = async (): Promise<void> => {
       },
     );
 
+    console.log(getReleaseResponse);
+
     const {
       data: {
+        id: releaseId,
         html_url: htmlUrl,
+        upload_url: uploadUrl,
         name: name,
         body: body,
+        draft: draft,
+        prerelease: prerelease,
+        author: author,
       },
     } = getReleaseResponse;
+
+    console.log(
+      `Got release info: '${releaseId}', '${htmlUrl}', '${uploadUrl}', '${name}', '${draft}', '${prerelease}', '${body}', '${author}'`,
+    );*/
+
+    const {
+      data: { html_url: htmlUrl, name: name, body: body },
+    } = getLatestTag;
 
     if (body) {
       const changelog = body?.replace(/#/g, '').split('\n\n\n');

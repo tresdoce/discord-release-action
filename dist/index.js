@@ -45,18 +45,11 @@ const run = async () => {
         const tag = core.getInput('tag');
         const webhook = core.getInput('webhook');
         const octokit = github.getOctokit(gh_token);
-        const latestTag = await octokit.request('GET /repos/{owner}/{repo}/releases/latest', {
+        const getLatestTag = await octokit.request('GET /repos/{owner}/{repo}/releases/latest', {
             owner,
             repo,
         });
-        console.log(latestTag);
-        const getReleaseResponse = await octokit.request('GET /repos/{owner}/{repo}/releases/tags/{tag}', {
-            baseUrl: 'https://api.github.com',
-            owner,
-            repo,
-            tag,
-        });
-        const { data: { html_url: htmlUrl, name: name, body: body, }, } = getReleaseResponse;
+        const { data: { html_url: htmlUrl, name: name, body: body }, } = getLatestTag;
         if (body) {
             const changelog = body === null || body === void 0 ? void 0 : body.replace(/#/g, '').split('\n\n\n');
             changelog[0] = `🎉  New release of [**${name}**](${htmlUrl}) is out!`;
