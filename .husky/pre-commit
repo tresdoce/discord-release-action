@@ -3,5 +3,4 @@
 
 yarn lint
 yarn format
-yarn build
 #yarn test:commit
