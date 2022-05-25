@@ -42,7 +42,6 @@ const run = async () => {
         const gh_token = core.getInput('GITHUB_TOKEN');
         const owner = core.getInput('owner');
         const repo = core.getInput('repo');
-        const tag = core.getInput('tag');
         const webhook = core.getInput('webhook');
         const octokit = github.getOctokit(gh_token);
         const getLatestTag = await octokit.request('GET /repos/{owner}/{repo}/releases/latest', {

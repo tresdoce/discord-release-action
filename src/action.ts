@@ -7,7 +7,7 @@ export const run = async (): Promise<void> => {
     const gh_token = core.getInput('GITHUB_TOKEN');
     const owner = core.getInput('owner');
     const repo = core.getInput('repo');
-    const tag = core.getInput('tag');
+    //const tag = core.getInput('tag');
     const webhook = core.getInput('webhook');
 
     // Get authenticated GitHub client (Ocktokit): https://github.com/actions/toolkit/tree/master/packages/github#usage

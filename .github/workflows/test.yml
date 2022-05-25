@@ -19,5 +19,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           owner: ${{ github.repository_owner }}
           repo: ${{ github.event.repository.name }}
-          tag: '@tresdoce-nestjs-toolkit/typeorm@0.1.0-beta.0'
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
