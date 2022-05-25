@@ -56,7 +56,7 @@ export const run = async (): Promise<void> => {
     } = getLatestTag;
 
     if (body) {
-      const changelog = body?.replace(/#/g, '').replace(/\r/g, '').split('\n\n\n');
+      const changelog = body.replace(/#/g, '').replace(/\r/g, '').split('\n\n\n');
       changelog[0] = `🎉  New release of [**${name}**](${htmlUrl}) is out!`;
       const content = `${changelog.join('\n\n\n')}`;
 
