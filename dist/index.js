@@ -51,7 +51,7 @@ const run = async () => {
         });
         const { data: { html_url: htmlUrl, name, body }, } = getLatestTag;
         if (body) {
-            const changelog = body === null || body === void 0 ? void 0 : body.replace(/#/g, "").replace(/\r/g, "").split("\n\n\n");
+            const changelog = body === null || body === void 0 ? void 0 : body.replace(/#/g, '').replace(/\r/g, '').split('\n\n\n');
             changelog[0] = `🎉  New release of [**${name}**](${htmlUrl}) is out!`;
             const content = `${changelog.join('\n\n\n')}`;
             const payload = {
