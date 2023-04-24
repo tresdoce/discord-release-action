@@ -7,8 +7,13 @@ export const run = async (): Promise<void> => {
     const gh_token = core.getInput('GITHUB_TOKEN');
     const owner = core.getInput('owner');
     const repo = core.getInput('repo');
-    //const tag = core.getInput('tag');
     const webhook = core.getInput('webhook');
+    console.log("GH_TOKEN: ", gh_token)
+    console.log("OWNER: ", owner)
+    console.log("REPO: ", repo)
+    console.log("WEBHOOK: ", webhook)
+
+    //const tag = core.getInput('tag');
 
     // Get authenticated GitHub client (Ocktokit): https://github.com/actions/toolkit/tree/master/packages/github#usage
     const octokit = github.getOctokit(gh_token);
@@ -51,10 +56,12 @@ export const run = async (): Promise<void> => {
       `Got release info: '${releaseId}', '${htmlUrl}', '${uploadUrl}', '${name}', '${draft}', '${prerelease}', '${body}', '${author}'`,
     );*/
 
+    console.log('Latest Tag: ', getLatestTag);
+
     const {
       data: { html_url: htmlUrl, name, body },
     } = getLatestTag;
-    console.log(getLatestTag);
+
     if (body) {
       const changelog = body?.replace(/#/g, '').replace(/\r/g, '').split('\n\n\n');
       changelog[0] = `🎉  New release of [**${name}**](${htmlUrl}) is out!`;
