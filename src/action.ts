@@ -23,9 +23,9 @@ export const run = async (): Promise<void> => {
       baseUrl: 'https://api.github.com',
       owner,
       repo,
-    })
+    });
 
-    console.log("LATEST COMMIT: ", latestCommit);
+    console.log('LATEST COMMIT: ', latestCommit);
 
     // https://api.github.com/repos/tresdoce/tresdoce-nestjs-toolkit/releases/tags/@tresdoce-nestjs-toolkit/typeorm@0.1.0-beta.0
     const getLatestTag = await octokit.request('GET /repos/{owner}/{repo}/releases/latest', {
@@ -93,7 +93,7 @@ export const run = async (): Promise<void> => {
         ],
       };
 
-      console.log("PAYLOAD: ", payload)
+      console.log('PAYLOAD: ', payload);
 
       /*await httpClient.post(webhook, {
         data: JSON.stringify(payload),
