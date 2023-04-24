@@ -85,7 +85,7 @@ export const run = async (): Promise<void> => {
       };
 
       await httpClient.post(webhook, {
-        data: payload,
+        data: JSON.stringify(payload),
       });
     }
   } catch (error) {
