@@ -8,10 +8,10 @@ export const run = async (): Promise<void> => {
     const owner = core.getInput('owner');
     const repo = core.getInput('repo');
     const webhook = core.getInput('webhook');
-    console.log("GH_TOKEN: ", gh_token)
-    console.log("OWNER: ", owner)
-    console.log("REPO: ", repo)
-    console.log("WEBHOOK: ", webhook)
+    console.log('GH_TOKEN: ', gh_token);
+    console.log('OWNER: ', owner);
+    console.log('REPO: ', repo);
+    console.log('WEBHOOK: ', webhook);
 
     //const tag = core.getInput('tag');
 
