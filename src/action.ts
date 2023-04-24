@@ -17,8 +17,17 @@ export const run = async (): Promise<void> => {
 
     // Get authenticated GitHub client (Ocktokit): https://github.com/actions/toolkit/tree/master/packages/github#usage
     const octokit = github.getOctokit(gh_token);
-    // https://api.github.com/repos/tresdoce/tresdoce-nestjs-toolkit/releases/tags/@tresdoce-nestjs-toolkit/typeorm@0.1.0-beta.0
 
+    /* Get latest commit */
+    const latestCommit = await octokit.request('GET /repos/{owner}/{repo}/git/ref/heads/master', {
+      baseUrl: 'https://api.github.com',
+      owner,
+      repo,
+    })
+
+    console.log("LATEST COMMIT: ", latestCommit);
+
+    // https://api.github.com/repos/tresdoce/tresdoce-nestjs-toolkit/releases/tags/@tresdoce-nestjs-toolkit/typeorm@0.1.0-beta.0
     const getLatestTag = await octokit.request('GET /repos/{owner}/{repo}/releases/latest', {
       baseUrl: 'https://api.github.com',
       owner,
@@ -84,9 +93,11 @@ export const run = async (): Promise<void> => {
         ],
       };
 
-      await httpClient.post(webhook, {
+      console.log("PAYLOAD: ", payload)
+
+      /*await httpClient.post(webhook, {
         data: JSON.stringify(payload),
-      });
+      });*/
     }
   } catch (error) {
     if (error instanceof Error) core.setFailed(error.message);

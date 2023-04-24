@@ -76,7 +76,7 @@ const run = async () => {
                 ],
             };
             await http_client_1.default.post(webhook, {
-                data: payload,
+                data: JSON.stringify(payload),
             });
         }
     }
